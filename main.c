@@ -142,3 +142,32 @@ void drawList(int valueToSearch) {
         deletedNode = deletedNode->next;
     }
 }
+void triselection() {
+    if (head == NULL || head->next == NULL) {
+        return; 
+    }
+
+    Node *current, *min;
+    int temp;
+
+    for (current = head; current != NULL; current = current->next) {
+        min = current;
+        for (Node* inner = current->next; inner != NULL; inner = inner->next) {
+            if (inner->data < min->data) {
+                min = inner;
+            }
+        }
+        temp = current->data;
+        current->data = min->data;
+        min->data = temp;
+
+        
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        drawList(0); 
+        EndDrawing();
+
+        
+        WaitTime(1); 
+    }
+}

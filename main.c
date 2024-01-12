@@ -60,3 +60,17 @@ void deleteNodeByValue(int value) {
 
     printf("Node with value %d not found in the list.\n", value);
 }
+void searchNode(int value) {
+    Node* current = head;
+
+    while (current != NULL) {
+        if (current->data == value) {
+            printf("Node with value %d found in the list.\n", value);
+            return;
+        }
+
+        current = current->next;
+    }
+
+    printf("Node with value %d not found in the list.\n", value);
+}

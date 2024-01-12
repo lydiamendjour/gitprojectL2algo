@@ -9,6 +9,8 @@ typedef struct Node {
     struct Node* next;
 } Node;
 Node* head = NULL;
+Node* deletedNodes = NULL;
+
 Node* createNode(int data) {
     Node* newNode = (Node*)malloc(sizeof(Node));
     newNode->data = data;
@@ -30,4 +32,31 @@ void insertNode(int data) {
         current->next = newNode;
         newNode->prev = current;
     }
+}
+void deleteNodeByValue(int value) {
+    Node* current = head;
+
+    while (current != NULL) {
+        if (current->data == value) {
+            if (current->prev != NULL) {
+                current->prev->next = current->next;
+            } else {
+                head = current->next;
+            }
+
+            if (current->next != NULL) {
+                current->next->prev = current->prev;
+            }
+
+            // Add the deleted node to the temporary list
+            current->next = deletedNodes;
+            deletedNodes = current;
+
+            return;
+        }
+
+        current = current->next;
+    }
+
+    printf("Node with value %d not found in the list.\n", value);
 }

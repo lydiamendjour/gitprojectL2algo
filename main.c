@@ -74,3 +74,10 @@ void searchNode(int value) {
 
     printf("Node with value %d not found in the list.\n", value);
 }
+void emptyList() {
+    while (head != NULL) {
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+    }
+}

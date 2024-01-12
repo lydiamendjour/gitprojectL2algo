@@ -325,3 +325,50 @@ int main(void) {
                 inputBuffer[inputIndex] = '\0';
             }
         }
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+
+        if (NEntered == 0) {
+            DrawText("Enter the number of elements (N) and press Enter:", 50, 50, 20, BLACK);
+        } else {
+            DrawText("Enter values:",50, 50, 20, BLACK);
+            DrawText(TextFormat("Elements Entered: %d/%d", elementsEntered, numElements), 50, 80, 20, BLACK);
+        }
+
+        DrawRectangle(50, 100, 200, 30, LIGHTGRAY);
+        DrawText(inputBuffer, 60, 110, 20, MAROON);
+
+        drawList(valueToSearch);
+
+        DrawRectangle(50, 10, 100, 30, YELLOW);
+        DrawText("Empty", 65, 15, 20, WHITE);
+        DrawRectangle(160, 10, 100, 30, GREEN);
+        DrawText("Delete", 175, 15, 20, BLACK);
+        DrawRectangle(270, 10, 100, 30, BLUE);
+        DrawText("Search", 285, 15, 20, WHITE);
+        DrawRectangle(380, 10, 100, 30, PURPLE);
+        DrawText("Insert", 395, 15, 20, BLACK);
+        DrawRectangle(490, 10, 100, 30, PINK);
+        DrawText("Sort", 505, 15, 20, WHITE);
+
+        EndDrawing();
+    }
+
+    CloseWindow();
+
+    while (head != NULL) {
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+    }
+
+    // Deallocate memory for the deleted nodes
+    while
+ (deletedNodes != NULL) {
+        Node* temp = deletedNodes;
+        deletedNodes = deletedNodes->next;
+        free(temp);
+    }
+
+    return 0;
+    }

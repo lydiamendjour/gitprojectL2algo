@@ -266,3 +266,29 @@ int main(void) {
                 }
             }
         }
+        if (state == 1) {
+            DrawText("Enter the value of the node to delete:", 50, 150, 20, GREEN);
+            DrawText(inputBuffer, 60, 180, 20, MAROON);
+
+            if (IsKeyPressed(KEY_ENTER) && inputIndex > 0) {
+                valueToDelete = atoi(inputBuffer);
+                deleteNodeByValue(valueToDelete);
+                state = 0;
+                inputBuffer[0] = '\0';
+                inputIndex = 0;
+            }
+        }
+
+        
+        if (state == 3) {
+            DrawText("Enter the value to search:", 50, 150, 20, BLUE);
+            DrawText(inputBuffer, 60, 180, 20, MAROON);
+
+            if (IsKeyPressed(KEY_ENTER) && inputIndex > 0) {
+                valueToSearch = atoi(inputBuffer);
+                searchNode(valueToSearch);
+                state = 0;
+                inputBuffer[0] = '\0';
+                inputIndex = 0;
+            }
+        }

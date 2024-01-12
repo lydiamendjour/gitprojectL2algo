@@ -197,4 +197,72 @@ void insertElementAtPosition(int data, int position) {
         newNode->prev = current;
     }
 }
-//TEST
+
+int main(void) {
+    InitWindow(1200, 800, " Doubly Linked List algo project ");
+
+    char inputBuffer[16] = "";
+    int inputIndex = 0;
+    int numElements = 0;
+    int elementsEntered = 0;
+    int NEntered = 0;
+    int valueToDelete = 0;
+    int valueToSearch = 0;
+    int state = 0;
+
+    int insertPosition = 0;
+    int insertValue = 0;
+    int insertingElement = 0;
+
+    while (!WindowShouldClose()) {
+        while (IsKeyPressed(KEY_BACKSPACE) && inputIndex > 0) {
+            inputBuffer[--inputIndex] = '\0';
+        }
+
+        if (NEntered == 0 && IsKeyPressed(KEY_ENTER) && inputIndex > 0) {
+            numElements = atoi(inputBuffer);
+            elementsEntered = 0;
+            NEntered = 1;
+            inputBuffer[0] = '\0';
+            inputIndex = 0;
+        }
+
+        if (elementsEntered < numElements && IsKeyPressed(KEY_ENTER) && inputIndex > 0) {
+            int element = atoi(inputBuffer);
+            insertNode(element);
+            elementsEntered++;
+            inputBuffer[0] = '\0';
+            inputIndex = 0;
+        }
+
+        
+       
+
+        if (insertingElement) {
+            if (insertPosition == 0) {
+                DrawText("Enter the position to insert the element:", 50, 160, 20, PURPLE);
+                DrawText(inputBuffer, 50, 190, 20, MAROON);
+
+                if (IsKeyPressed(KEY_ENTER) && inputIndex > 0) {
+                    insertPosition = atoi(inputBuffer);
+                    inputBuffer[0] = '\0';
+                    inputIndex = 0;
+                }
+            } else if (insertValue == 0) {
+                DrawText("Enter the value of the element to insert:", 50, 230, 20, PURPLE);
+                DrawText(inputBuffer, 50, 260, 20, MAROON);
+
+                if (IsKeyPressed(KEY_ENTER) && inputIndex > 0) {
+                    insertValue = atoi(inputBuffer);
+                    insertingElement = 0;
+                    insertElementAtPosition(insertValue, insertPosition);
+                    elementsEntered++;
+
+                    DrawText("Updated List:", 50, 320, 20, BLACK);
+                    drawList(valueToSearch);
+
+                    insertPosition = 0;
+                    insertValue = 0;
+                }
+            }
+        }

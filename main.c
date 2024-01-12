@@ -292,3 +292,36 @@ int main(void) {
                 inputIndex = 0;
             }
         }
+         Vector2 mousePoint = GetMousePosition();
+
+        if (CheckCollisionPointRec(mousePoint, (Rectangle){50, 10, 100, 30}) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            emptyList();
+            elementsEntered = 0;
+            NEntered = 0;
+        }
+
+        if (CheckCollisionPointRec(mousePoint, (Rectangle){160, 10, 100, 30}) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            state = 1;
+        }
+
+        if (CheckCollisionPointRec(mousePoint, (Rectangle){270, 10, 100, 30}) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            state = 3;
+        }
+
+        if (CheckCollisionPointRec(mousePoint, (Rectangle){380, 10, 100, 30}) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            insertingElement = 1;
+            insertPosition = 0;
+            insertValue = 0;
+        }
+
+        if (CheckCollisionPointRec(mousePoint, (Rectangle){490, 10, 100, 30}) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            triselection();
+        }
+
+        if (inputIndex < 15) {
+            int key = GetKeyPressed();
+            if ((key >= '0' && key <= '9') || key == KEY_SPACE) {
+                inputBuffer[inputIndex++] = (char)key;
+                inputBuffer[inputIndex] = '\0';
+            }
+        }

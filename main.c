@@ -171,3 +171,29 @@ void triselection() {
         WaitTime(1); 
     }
 }
+void insertElementAtPosition(int data, int position) {
+    Node* newNode = createNode(data);
+
+    if (head == NULL || position <= 1) {
+        newNode->next = head;
+        if (head != NULL) {
+            head->prev = newNode;
+        }
+        head = newNode;
+    } else {
+        Node* current = head;
+        int currentPosition = 1;
+
+        while (currentPosition < position - 1 && current->next != NULL) {
+            current = current->next;
+            currentPosition++;
+        }
+
+        newNode->next = current->next;
+        if (current->next != NULL) {
+            current->next->prev = newNode;
+        }
+        current->next = newNode;
+        newNode->prev = current;
+    }
+}
